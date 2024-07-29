@@ -11,7 +11,7 @@ public class Deck {
     public Deck(){
         cards = new ArrayList<Card>();
         for(int s=1; s<=4; s++){
-            for(int v=1; v<=13;v++){
+            for(int v=2; v<=14;v++){
                 cards.add(new Card(v, s));
             }
         }

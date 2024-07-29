@@ -18,4 +18,12 @@ public class Hand {
         return  this.cardsInHand;
     }
 
+    public boolean isEmpty(){
+        return cardsInHand.isEmpty();
+    }
+
+    public int getHandSize(){
+        return cardsInHand.size();
+    }
+
 }

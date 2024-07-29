@@ -32,9 +32,6 @@ public class Card {
 
         //ace is low
         switch(this.value) {
-            case 1:
-                cardValue = "A ";
-                break;
             case 10:
                 cardValue = "10";
                 break;
@@ -46,6 +43,9 @@ public class Card {
                 break;
             case 13:
                 cardValue = "K ";
+                break;
+            case 14:
+                cardValue = "A ";
                 break;
             default:
                 cardValue = String.valueOf(this.value)+" ";
