@@ -1,18 +1,24 @@
 package com.allstonegames;
 
 
-import java.util.ArrayList;
+
+import java.util.Collections;
+import java.util.LinkedList;
+import java.util.Random;
 
 public class Deck {
 
-    public ArrayList<Card>  cards;
+    public LinkedList<Card>  cards;
 
 
-    public Deck(){
-        cards = new ArrayList<Card>();
-        for(int s=1; s<=4; s++){
-            for(int v=2; v<=14;v++){
-                cards.add(new Card(v, s));
+    public Deck(boolean isFull){
+        cards = new LinkedList<Card>();
+        if(isFull){
+            cards = new LinkedList<Card>();
+            for(int s=1; s<=4; s++){
+                for(int v=2; v<=14;v++){
+                    cards.add(new Card(v, s));
+                }
             }
         }
     }
@@ -23,11 +29,22 @@ public class Deck {
         }
     }
 
-    public ArrayList<Card> getCards(){
+    public LinkedList<Card> getCards(){
         return this.cards;
     }
 
+    public void shuffle(){
+        Collections.shuffle(cards, new Random()); 
+    }
 
+    public boolean hasCards(){
+        return cards.isEmpty();
+    }
+    public int getSize(){
+        return cards.size();
+    }
 
-
+    public Card getTopCard(){
+        return cards.pop();
+    }
 }
