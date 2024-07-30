@@ -1,61 +1,78 @@
 package com.allstonegames;
 
-import java.util.ArrayList;
+import java.util.LinkedList;
 
 public class Player {
 
-    Hand mainHand = new Hand();
-    public String name;
-
+    Deck deck;
+    String name;
 
     public Player(String name){
+        this.deck = new Deck(false);
         this.name = name;
     }
+    
 
-    public void addCard(Card c) {
-        mainHand.cardsInHand.add(c);
-    }
 
-    public void print(){
-        mainHand.print();
-    }
+
 
     public Card getTopCard(){
-        return mainHand.cardsInHand.get(0);
-    }
-
-    public Card giveTopCard(){
-        Card c = getTopCard();
-        mainHand.cardsInHand.remove(c);
-        return c;
-    }
-    public ArrayList<Card> giveTopNCards(int nCards){
-        ArrayList<Card> cards = new ArrayList<Card>();
-        int count = 1;
-        while(count < nCards){
-            Card c = getTopCard();
-            mainHand.cardsInHand.remove(c);
-            cards.add(c);
-            count++;
-        }
-        return cards;
-    }
-
-    // gives three cards face down, then a fourth card face up to compare.
-    // if the player deoesnt have enough cards, they give what they can and flip their last card
-    public ArrayList<Card> giveCardsForTie(){
-        if(mainHand.getHandSize() >=4){
-            return giveTopNCards(4);
+        if(deck.hasCards()){
+            return deck.giveTopCard();
         }else{
-            return giveTopNCards(mainHand.getHandSize()-1);
+            return null;
+        }
+    }
+        
+
+    public LinkedList<Card> giveCardsForTie(){
+        if(deck.hasCards()){
+            LinkedList<Card> cards = new LinkedList<Card>();
+            int deckSize = deck.getSize();
+            if( deckSize< 4){
+                for(int i=0; i < deckSize; i++){
+                    cards.add(deck.giveTopCard());
+                }
+            }else{
+                for(int i=0; i < 4; i++){
+                    cards.add(deck.giveTopCard());
+                }
+            }
+            return cards;
+        }
+        return null;
+    }
+
+    public LinkedList<Card> giveCardsForTie2(){
+        if(deck.hasCards()){
+            LinkedList<Card> cards = new LinkedList<Card>();
+            // givess three face down cards, and a fourth face up
+            // if it cant give 4 cards last card is face up
+            for(int i=0; i < 4; i++){
+                if(deck.hasCards()){
+                    cards.add(deck.giveTopCard());
+                }else{
+                    break;
+                }
+            }
+            return cards;
+        }
+        return null;
+    }
+
+
+    public void addCardToDeck(Card c){
+        deck.addCard(c);
+    }
+
+    public void printDeck(){
+        for(Card c : deck.getCards()){
+            System.out.print(c.toString());
         }
     }
 
-
-    public ArrayList<Card> getCards(){
-        return  this.mainHand.getCards();
+    public boolean hasCards(){
+        return this.deck.hasCards();
     }
-
-    
 
 }

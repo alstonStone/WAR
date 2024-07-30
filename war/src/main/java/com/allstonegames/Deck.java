@@ -4,7 +4,6 @@ package com.allstonegames;
 
 import java.util.Collections;
 import java.util.LinkedList;
-import java.util.Random;
 
 public class Deck {
 
@@ -12,9 +11,9 @@ public class Deck {
 
 
     public Deck(boolean isFull){
-        cards = new LinkedList<Card>();
+        this.cards = new LinkedList<Card>();
         if(isFull){
-            cards = new LinkedList<Card>();
+            this.cards = new LinkedList<Card>();
             for(int s=1; s<=4; s++){
                 for(int v=2; v<=14;v++){
                     cards.add(new Card(v, s));
@@ -34,17 +33,26 @@ public class Deck {
     }
 
     public void shuffle(){
-        Collections.shuffle(cards, new Random()); 
+        Collections.shuffle(this.cards);
     }
 
     public boolean hasCards(){
-        return cards.isEmpty();
+        return !this.cards.isEmpty();
     }
     public int getSize(){
-        return cards.size();
+        return this.cards.size();
     }
 
-    public Card getTopCard(){
-        return cards.pop();
+    public Card giveTopCard(){
+        return this.cards.pop();
     }
+
+    public void addCard(Card c){
+        this.cards.add(c);
+    }
+    
+    public Card getLastCard(){
+        return this.cards.getLast();
+    }
+
 }

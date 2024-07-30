@@ -9,7 +9,7 @@ public class App {
     {
         Game g = new Game();
         g.newGame();
-        g.Start();
+        g.start();
     }
 
 }
