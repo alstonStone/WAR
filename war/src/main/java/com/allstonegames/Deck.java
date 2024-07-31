@@ -4,6 +4,7 @@ package com.allstonegames;
 
 import java.util.Collections;
 import java.util.LinkedList;
+import java.util.Random;
 
 public class Deck {
 
@@ -24,8 +25,9 @@ public class Deck {
 
     public void print(){
         for(Card c: cards){
-            System.out.println(c.toString());
+            System.out.print(c.toString());
         }
+        System.out.println();
     }
 
     public LinkedList<Card> getCards(){
@@ -33,7 +35,7 @@ public class Deck {
     }
 
     public void shuffle(){
-        Collections.shuffle(this.cards);
+        Collections.shuffle(this.cards, new Random());
     }
 
     public boolean hasCards(){

@@ -69,6 +69,7 @@ public class Player {
         for(Card c : deck.getCards()){
             System.out.print(c.toString());
         }
+        System.out.println();
     }
 
     public boolean hasCards(){

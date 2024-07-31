@@ -45,9 +45,6 @@ public class Round {
 
 
     public int compareCards(){
-        if(checkForWinner() !=0){
-            return checkForWinner();
-        }
         if(p1Card.getValue() > p2Card.getValue()){
             return 1;
         }
@@ -64,6 +61,10 @@ public class Round {
 
 
     public int war(){
+        System.out.println("WAR");
+        if(checkForWinner() != 0){
+            return checkForWinner();
+        }
         for(Card c: p1.giveCardsForTie()){
             this.winnings.addCard(c);
         }

@@ -10,6 +10,7 @@ public class App {
         Game g = new Game();
         g.newGame();
         g.start();
+        System.out.println("over");
     }
 
 }
